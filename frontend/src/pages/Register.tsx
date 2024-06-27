@@ -7,6 +7,7 @@ import { DateComponenet } from "../components/auth/Date";
 import toast from "react-hot-toast";
 import { Redirect } from "../components/helper/Redirect";
 import { postHandler } from "../components/helper/apiHandler";
+import { useNavigate } from "react-router-dom";
 
 export const Register: () => JSX.Element = (): JSX.Element => {
   const {
@@ -18,12 +19,14 @@ export const Register: () => JSX.Element = (): JSX.Element => {
     mode: "all",
   });
 
+  const navigate = useNavigate();
   const submitHandler: SubmitHandler<FieldValues> = async (
     data: FieldValues
   ) => {
     const res = await postHandler("auth/register", data);
     if (!res) return;
     toast.success(res.message);
+    navigate("/auth/login");
   };
 
   return (
@@ -33,8 +36,32 @@ export const Register: () => JSX.Element = (): JSX.Element => {
         onSubmit={handleSubmit(submitHandler)}
         className="flex flex-col gap-5 w-full "
       >
-        <Text register={register} error={errors} fieldId="firstName" />
-        <Text register={register} error={errors} fieldId="lastName" />
+        <Text
+          register={register}
+          error={errors}
+          fieldId="firstName"
+          fieldName="First Name"
+          validate={{
+            required: `First Name is required`,
+            pattern: {
+              value: /^[a-zA-Z-'.]+$/,
+              message: "First Name is not valid",
+            },
+          }}
+        />
+        <Text
+          register={register}
+          error={errors}
+          fieldId="lastName"
+          fieldName="Last Name"
+          validate={{
+            required: `Last Name is required`,
+            pattern: {
+              value: /^[a-zA-Z-'.]+$/,
+              message: "Last Name is not valid",
+            },
+          }}
+        />
         <Email register={register} error={errors} />
         <DateComponenet
           register={register}

@@ -1,6 +1,7 @@
 import {
   FieldErrors,
   FieldValues,
+  RegisterOptions,
   UseFormRegister,
   UseFormSetError,
 } from "react-hook-form";
@@ -15,4 +16,6 @@ export interface commonTextControlProps {
   register: UseFormRegister<FieldValues>;
   error: FieldErrors<FieldValues>;
   fieldId: string;
+  fieldName: string;
+  validate:  RegisterOptions<FieldValues, string> | undefined;
 }
