@@ -12,10 +12,14 @@ export interface controlProps {
   setError?: UseFormSetError<FieldValues>;
 }
 
+export interface radioControlProps {
+  register: UseFormRegister<FieldValues>;
+}
+
 export interface commonTextControlProps {
   register: UseFormRegister<FieldValues>;
   error: FieldErrors<FieldValues>;
   fieldId: string;
   fieldName: string;
-  validate:  RegisterOptions<FieldValues, string> | undefined;
+  validate: RegisterOptions<FieldValues, string> | undefined;
 }

@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import { Redirect } from "../components/helper/Redirect";
 import { postHandler } from "../components/helper/apiHandler";
 import { useNavigate } from "react-router-dom";
+import { RadioButton } from "../components/auth/RadioButton";
 
 export const Register: () => JSX.Element = (): JSX.Element => {
   const {
@@ -23,7 +24,10 @@ export const Register: () => JSX.Element = (): JSX.Element => {
   const submitHandler: SubmitHandler<FieldValues> = async (
     data: FieldValues
   ) => {
-    const res = await postHandler("auth/register", data);
+    const res = await postHandler("auth/register", {
+      ...data,
+      role: +data.role,
+    });
     if (!res) return;
     toast.success(res.message);
     navigate("/auth/login");
@@ -69,12 +73,13 @@ export const Register: () => JSX.Element = (): JSX.Element => {
           setError={setError}
         />
         <Password register={register} error={errors} />
+        <RadioButton register={register} />
         <Submit />
       </form>
       <p>
         already user?
         <Redirect
-          className="ml-2 align-center cursor-pointer text-blue-600 text-md"
+          className="ml-2 align-center cursor-pointer text-md  text-blue-600 "
           label="Login"
           to="/auth/login"
         />

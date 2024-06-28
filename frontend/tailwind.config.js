@@ -5,6 +5,8 @@ export default {
     extend: {
       fontFamily: {
         roboto: ["Roboto"],
+        fira: ["Fira Sans Condensed"],
+        logo: ["Playwrite IT Moderna"],
       },
     },
   },
