@@ -1,6 +1,6 @@
 import { Logo } from "./Logo";
 import { Profile } from "./Profile";
-import { Navbar } from "../home/Navbar";
+import { Navbar } from "./Navbar";
 
 export const NavPart = () => {
   return (
