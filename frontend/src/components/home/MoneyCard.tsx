@@ -13,7 +13,7 @@ export const MoneyCard = ({
 }) => {
   return (
     <div
-      className="border h-24 w-full mt-3 border-r-[5px] rounded-md"
+      className="border border-slate-300 h-24 w-full mt-3 border-r-[6px] rounded-md"
       style={{ borderRightColor: borderColour }}
     >
       <div className="p-3 text-xl">

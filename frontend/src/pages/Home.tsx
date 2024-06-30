@@ -4,7 +4,7 @@ import { BsPersonWorkspace } from "react-icons/bs";
 import { VscOpenPreview } from "react-icons/vsc";
 import { AiOutlineFieldTime } from "react-icons/ai";
 import { MdOutlinePaid } from "react-icons/md";
-import { BarGraph } from "../components/home/BarGraph";
+import { HomeBarGraph } from "../components/home/HomeBarGraph";
 import HomePieChart from "../components/home/HomePieChart";
 
 export const Home = () => {
@@ -43,7 +43,7 @@ export const Home = () => {
       </div>
       <div className="flex justify-between gap-5">
         <HomePieChart />
-        <BarGraph />
+        <HomeBarGraph />
       </div>
     </div>
   );
