@@ -40,7 +40,7 @@ export default function HomePieChart() {
   };
 
   return (
-    <div className="border border-slate-300 rounded w-full h-72">
+    <div className="border border-slate-300 rounded w-full h-72 bg-white">
       <div className="p-2 font-semibold border-b-2 flex items-center justify-between w-full">
         <p className="text-2xl text-center py-1">Status</p>
         <div className="flex items-center gap-5 bg-[#BBE9FF] p-2 rounded-md">

@@ -23,7 +23,7 @@ const xLabels = [
 
 export const HomeBarGraph = () => {
   return (
-    <div className="border border-slate-300 rounded w-full h-72">
+    <div className="border border-slate-300 rounded w-full h-72 bg-white">
       <div className="p-2 font-semibold border-b-2 flex items-center justify-between w-full">
         <p className="text-2xl text-center py-2">
           Annual comparison of operations grouped by month

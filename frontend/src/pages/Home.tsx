@@ -6,6 +6,7 @@ import { AiOutlineFieldTime } from "react-icons/ai";
 import { MdOutlinePaid } from "react-icons/md";
 import { HomeBarGraph } from "../components/home/HomeBarGraph";
 import HomePieChart from "../components/home/HomePieChart";
+import { HomeTable } from "../components/home/HomeTable";
 
 export const Home = () => {
   return (
@@ -44,6 +45,9 @@ export const Home = () => {
       <div className="flex justify-between gap-5">
         <HomePieChart />
         <HomeBarGraph />
+      </div>
+      <div>
+        <HomeTable />
       </div>
     </div>
   );
