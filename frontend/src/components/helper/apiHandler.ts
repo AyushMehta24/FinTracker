@@ -1,5 +1,6 @@
 import axios, { AxiosError } from "axios";
-import { BASE_URL } from "../../credentials/backend";
+// import { BASE_URL } from "../../credentials/backend";
+const BASE_URL = "";
 import toast from "react-hot-toast";
 
 const fetcher = (multipart?: boolean) => {
