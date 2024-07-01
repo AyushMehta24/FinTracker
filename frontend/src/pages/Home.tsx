@@ -7,40 +7,61 @@ import { MdOutlinePaid } from "react-icons/md";
 import { HomeBarGraph } from "../components/home/HomeBarGraph";
 import HomePieChart from "../components/home/HomePieChart";
 import { HomeTable } from "../components/home/HomeTable";
+import { useEffect, useState } from "react";
+import { getHandler } from "../components/helper/apiHandler";
+
+type OpeartionDataType = {
+  status: string;
+  total: string;
+  counter: number;
+  element: JSX.Element;
+  colour: string;
+};
 
 export const Home = () => {
+  const [opData, setOpData] = useState<OpeartionDataType[]>([]);
+  const getOperationData = async () => {
+    const res = await getHandler("overview/operation");
+    const finalData: OpeartionDataType[] = [
+      {
+        ...res.data[0],
+        colour: "#A7E6FF",
+        element: <BsPersonWorkspace className="text-3xl text-slate-400" />,
+      },
+      {
+        ...res.data[3],
+        colour: "#3ABEF9",
+        element: <VscOpenPreview className="text-3xl text-slate-400" />,
+      },
+      {
+        ...res.data[1],
+        colour: "#3572EF",
+        element: <AiOutlineFieldTime className="text-3xl text-slate-400" />,
+      },
+      {
+        ...res.data[2],
+        colour: "#050C9C",
+        element: <MdOutlinePaid className="text-3xl text-slate-400" />,
+      },
+    ];
+    setOpData(finalData);
+  };
+  useEffect(() => {
+    getOperationData();
+  }, []);
   return (
     <div className="flex-col w-full h-full flex gap-5 bg-[#FAF8Fc] pt-5 px-5">
-      <HomeHeading />
+      <HomeHeading name={"Overview"} />
       <div className="flex gap-5">
-        <MoneyCard
-          count={50}
-          type={"Processing"}
-          amount={4856}
-          element={<BsPersonWorkspace className="text-3xl text-slate-400" />}
-          borderColour={"#A7E6FF"}
-        />
-        <MoneyCard
-          count={30}
-          type={"Under Review"}
-          amount={40005}
-          element={<VscOpenPreview className="text-3xl text-slate-400" />}
-          borderColour={"#3ABEF9"}
-        />
-        <MoneyCard
-          count={10}
-          type={"Pending"}
-          amount={61565}
-          element={<AiOutlineFieldTime className="text-3xl text-slate-400" />}
-          borderColour={"#3572EF"}
-        />
-        <MoneyCard
-          count={20}
-          type={"Paid"}
-          amount={6511}
-          element={<MdOutlinePaid className="text-3xl text-slate-400" />}
-          borderColour={"#050C9C"}
-        />
+        {opData.map((component) => (
+          <MoneyCard
+            count={component.counter}
+            type={component.status}
+            amount={+component.total}
+            element={component.element}
+            borderColour={component.colour}
+          />
+        ))}
       </div>
       <div className="flex justify-between gap-5">
         <HomePieChart />

@@ -11,7 +11,7 @@ export const Redirect = ({
 }) => {
   const navigate = useNavigate();
   return (
-    <strong className={className} onClick={() => navigate(to, { replace: true })}>
+    <strong className={className} onClick={() => navigate(to, { replace: false })}>
       {label}
     </strong>
   );
