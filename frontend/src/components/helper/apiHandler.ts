@@ -7,7 +7,7 @@ const fetcher = (multipart?: boolean) => {
     baseURL: BASE_URL,
     headers: {
       "Content-Type": multipart ? "multipart/form-data" : "application/json",
-      Authorization: localStorage.getItem("token"),
+      Authorization: "barear " + localStorage.getItem("token"),
     },
   });
 };

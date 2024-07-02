@@ -53,13 +53,14 @@ export const Home = () => {
     <div className="flex-col w-full h-full flex gap-5 bg-[#FAF8Fc] pt-5 px-5">
       <HomeHeading name={"Overview"} />
       <div className="flex gap-5">
-        {opData.map((component) => (
+        {opData.map((component ,i) => (
           <MoneyCard
             count={component.counter}
             type={component.status}
             amount={+component.total}
             element={component.element}
             borderColour={component.colour}
+            key={i}
           />
         ))}
       </div>

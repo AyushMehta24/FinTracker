@@ -6,9 +6,13 @@ import { HomeHeading } from "../components/home/HomeHeading";
 import { Button } from "@mui/material";
 import { AnalyticsGraph } from "../components/transaction/AnalyticsGraph";
 import { useState } from "react";
+import { TransactionEntry } from "../components/transaction/TransactionEntry";
+import { Action } from "../components/transaction/Action";
+import { StockPortfolio } from "../components/transaction/StockPortfolio";
+import { TransactionSuggestion } from "../components/transaction/TransactionSuggestion";
 
 export const Transaction = () => {
-  const [graph, setGraph] = useState("halfYear");
+  const [graph, setGraph] = useState("month");
 
   const handleGraph = (name: string) => {
     setGraph(name);
@@ -41,34 +45,34 @@ export const Transaction = () => {
     4800, 3800, 4300, 6000, 2908, 1000, 2000,
   ];
   const monthLabels = [
-    "1/7",
-    "2/7",
-    "3/7",
-    "4/7",
-    "5/7",
-    "6/7",
-    "7/7",
-    "8/7",
-    "9/7",
-    "10/7",
-    "11/7",
-    "12/7",
-    "13/7",
-    "14/7",
-    "15/7",
-    "16/7",
-    "17/7",
-    "18/7",
-    "19/7",
-    "20/7",
-    "21/7",
-    "22/7",
-    "23/7",
-    "24/7",
-    "25/7",
-    "26/7",
-    "27/7",
-    "28/7",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15",
+    "16",
+    "17",
+    "18",
+    "19",
+    "20",
+    "21",
+    "22",
+    "23",
+    "24",
+    "25",
+    "26",
+    "27",
+    "28",
   ];
 
   const weekData = [4300, 9800, 3908, 4800, 3800, 4300, 6000];
@@ -164,6 +168,14 @@ export const Transaction = () => {
           </div>
           <AnalyticsGraph graphData={getGraph(graph)} />
         </div>
+      </div>
+      <div className="flex gap-8 w-full ">
+        <TransactionEntry />
+        <div className="flex flex-col justify-between bg-green-200 w-full">
+          <Action />
+          <StockPortfolio />
+        </div>
+        <TransactionSuggestion />
       </div>
     </div>
   );
