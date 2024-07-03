@@ -22,7 +22,6 @@ export const Login: () => JSX.Element = (): JSX.Element => {
     if (!res) return;
     localStorage.setItem("token", res.data.token);
     toast.success(res.message);
-    console.log(res);
     navigate("/");
   };
   return (

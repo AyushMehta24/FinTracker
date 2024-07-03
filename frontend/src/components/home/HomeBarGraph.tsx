@@ -17,7 +17,6 @@ export const HomeBarGraph = () => {
     setLabel(keys);
     const value: { month: string; counter: number }[][] =
       Object.values(yearlyData);
-    console.log(value, "value");
 
     const pdata: { month: string; counter: number }[] = value[0];
     const cdata: { month: string; counter: number }[] = value[1];

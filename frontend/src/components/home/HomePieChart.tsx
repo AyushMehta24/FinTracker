@@ -4,14 +4,21 @@ import { Box, Button } from "@mui/material";
 import { PieCenterLabel } from "./PieCenterLabel";
 import { calculatePercentage } from "../helper/home/percentageCounter";
 
-const data = [
+type pieChartDataType = {
+  percentage?: string;
+  value: number;
+  label: string;
+  color: string;
+}
+
+const data:pieChartDataType[] = [
   { label: "Processing", value: 4856, color: "#A7E6FF" },
   { label: "Under Review", value: 40005, color: "#3ABEF9" },
   { label: "Pending", value: 61565, color: "#3572EF" },
   { label: "Paid", value: 6511, color: "#050C9C" },
 ];
 
-const data2 = [
+const data2:pieChartDataType[] = [
   { label: "Processing", value: 100, color: "#A7E6FF" },
   { label: "Under Review", value: 1000, color: "#3ABEF9" },
   { label: "Pending", value: 2000, color: "#3572EF" },
@@ -23,10 +30,10 @@ const size = {
   height: 230,
 };
 
-const dataWithPercentage = calculatePercentage(data);
-const data2WithPercentage = calculatePercentage(data2);
+const dataWithPercentage:pieChartDataType[] = calculatePercentage(data);
+const data2WithPercentage:pieChartDataType[] = calculatePercentage(data2);
 
-export default function HomePieChart() {
+export default function HomePieChart({data}) {
   const [activeButton, setActiveButton] = useState<"Last Month" | "Last Year">(
     "Last Month"
   );
