@@ -21,7 +21,7 @@ type OpeartionDataType = {
 export const Home = () => {
   const [opData, setOpData] = useState<OpeartionDataType[]>([]);
   const getOperationData = async () => {
-    const res = await getHandler("overview/operation");
+    const res = await getHandler("api/overview/operation");
     const finalData: OpeartionDataType[] = [
       {
         ...res.data[0],

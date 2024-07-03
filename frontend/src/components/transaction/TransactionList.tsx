@@ -24,7 +24,7 @@ export const TransactionList = ({
       </div>
       <div
         className={`text-xl font-medium mr-2 ${
-          amount < 0 ? "text-red-600" : "text-green-400"
+          amount < 0 ? "text-red-600" : "text-green-600"
         }`}
       >
         {amount < 0 ? "-$" + -amount : "$" + amount}

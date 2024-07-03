@@ -1,27 +1,47 @@
 import { BarChart } from "@mui/x-charts/BarChart";
-
-const cData = [
-  4000, 3000, 2000, 2780, 1890, 2390, 3490, 2000, 2780, 1890, 2390, 3490,
-];
-const pData = [
-  2400, 1398, 9800, 3908, 4800, 3800, 4300, 9800, 3908, 4800, 3800, 4300,
-];
-const xLabels = [
-  "JAN",
-  "FEB",
-  "MAR",
-  "APR",
-  "MAY",
-  "JUNE",
-  "JULY",
-  "AUG",
-  "SEPT",
-  "OCT",
-  "NOV",
-  "DEC",
-];
+import { useEffect, useState } from "react";
+import { getHandler } from "../helper/apiHandler";
 
 export const HomeBarGraph = () => {
+  const [prevData, setPrevData] = useState<number[]>([]);
+  const [curData, setCurData] = useState<number[]>([]);
+  const [label, setLabel] = useState<string[]>([]);
+  const [month, setMonth] = useState<string[]>([]);
+  const getAnnualData = async () => {
+    const res = await getHandler("api/overview/annual");
+
+    const yearlyData: { month: string; counter: number }[][] = res.data;
+
+    const keys: string[] = Object.keys(yearlyData);
+
+    setLabel(keys);
+    const value: { month: string; counter: number }[][] =
+      Object.values(yearlyData);
+    console.log(value, "value");
+
+    const pdata: { month: string; counter: number }[] = value[0];
+    const cdata: { month: string; counter: number }[] = value[1];
+
+    const fpdata: number[] = [];
+    const fcdata: number[] = [];
+    const month: string[] = [];
+
+    pdata.map((record1: { month: string; counter: number }) => {
+      fpdata.push(record1.counter);
+      month.push(record1.month);
+    });
+
+    cdata.map((record2: { month: string; counter: number }) => {
+      fcdata.push(record2.counter);
+    });
+
+    setMonth(month);
+    setPrevData(fpdata);
+    setCurData(fcdata);
+  };
+  useEffect(() => {
+    getAnnualData();
+  }, []);
   return (
     <div className="border border-slate-300 rounded w-full h-72 bg-white">
       <div className="p-2 font-semibold border-b-2 flex items-center justify-between w-full">
@@ -36,16 +56,16 @@ export const HomeBarGraph = () => {
           height={220}
           series={[
             {
-              data: pData,
-              label: "2024",
+              data: prevData,
+              label: label[0],
               id: "pvId",
               color: "#3572EF",
             },
-            { data: cData, label: "2023", id: "uvId", color: "#A7E6FF" },
+            { data: curData, label: label[1], id: "uvId", color: "#A7E6FF" },
           ]}
           xAxis={[
             {
-              data: xLabels,
+              data: month,
               scaleType: "band",
             },
           ]}

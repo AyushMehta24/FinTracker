@@ -5,14 +5,16 @@ import { BsBoxArrowInUpRight } from "react-icons/bs";
 import { HomeHeading } from "../components/home/HomeHeading";
 import { Button } from "@mui/material";
 import { AnalyticsGraph } from "../components/transaction/AnalyticsGraph";
-import { useState } from "react";
+// import { useState } from "react";
 import { TransactionEntry } from "../components/transaction/TransactionEntry";
 import { Action } from "../components/transaction/Action";
 import { StockPortfolio } from "../components/transaction/StockPortfolio";
 import { TransactionSuggestion } from "../components/transaction/TransactionSuggestion";
+import { useContext } from "react";
+import { GraphContext } from "../contexts/graphContext";
 
 export const Transaction = () => {
-  const [graph, setGraph] = useState("month");
+  const { graph, setGraph } = useContext(GraphContext);
 
   const handleGraph = (name: string) => {
     setGraph(name);
@@ -93,7 +95,7 @@ export const Transaction = () => {
     }
   };
   return (
-    <div className="flex-col w-full h-full flex gap-5 bg-[#FAF8Fc] pt-5 px-5">
+    <div className="flex-col w-full h-full flex gap-5 bg-[#FAF8Fc] pt-5 px-5 overflow-hidden">
       <div className="flex justify-between w-full gap-5 ">
         <div className=" w-full flex flex-col">
           <div className="p-2">
